@@ -1,0 +1,165 @@
+settings:
+  # Красить lore красным цветом, если условия не выполнены
+  highlight-unavailable: true
+  # Добавлять к lore недоступного предмета список требований
+  show-requirements: true
+  # Автоматически применять префикс/суффикс при входе игрока
+  apply-on-join: true
+  # Интервал проверки истечения владения (в секундах)
+  expiry-check-interval: 60
+  # Разрешить использование PlaceholderAPI в меню
+  use-placeholderapi: true
+  # Вес (приоритет) кастомного префикса/суффикса в LuckPerms.
+  # Чем выше — тем важнее. Должен быть выше веса групповых префиксов,
+  # чтобы кастомный переопределял их.
+  custom-prefix-weight: 100
+
+# === Проверка обновлений через dLibs ===
+update-check:
+  # Включить автоматическую проверку обновлений при запуске
+  enabled: true
+  # Идентификатор проекта:
+  #  - GitHub: "owner/repo"       (например, "demro/dprefixes")
+  #  - Modrinth: slug или ID      (например, "dprefixes")
+  #  - Hangar: "author/slug"      (например, "Demro/dprefixes")
+  repo: "demrodev/dprefixes"
+  # Платформа: GITHUB | MODRINTH | HANGAR
+  platform: "GITHUB"
+  # Показывать уведомление админам, зашедшим на сервер
+  notify-admins: true
+  # Проверять обновления при каждом входе админа (а не только при старте)
+  on-admin-join: true
+  # Кулдаун между проверками при входе админа (в секундах).
+  cooldown-seconds: 300
+  # Отображаемый текст ссылки в чате вместо полного URL.
+  # Плейсхолдеры: %latest% (версия), %current% (текущая версия).
+  # Можно использовать цветовые коды и HEX.
+  link-text: "&a&n%latest%"
+
+sounds:
+  # Общий переключатель всех звуков
+  enabled: true
+
+  # Звук при открытии меню (любого)
+  menu-open:
+    enabled: true
+    # Имя звука из org.bukkit.Sound (например: BLOCK_NOTE_BLOCK_HARP, UI_BUTTON_CLICK, BLOCK_CHEST_OPEN)
+    sound: "minecraft:entity.cat.purreow"
+    volume: 0.7
+    pitch: 1.2
+
+  # Звук при успешной покупке предмета
+  purchase:
+    enabled: true
+    sound: "ENTITY_PLAYER_LEVELUP"
+    volume: 1.0
+    pitch: 1.5
+
+  # Звук при неудачной покупке (условия не выполнены, не хватает денег)
+  purchase-failed:
+    enabled: true
+    sound: "ENTITY_VILLAGER_NO"
+    volume: 1.0
+    pitch: 1.0
+
+# === Хранилище данных ===
+database:
+  # Тип хранилища: yaml | h2 | mysql
+  # - yaml  : простой YAML-файл (playerdata.yml)
+  # - h2    : встроенная файловая БД H2 (быстрее, надёжнее YAML)
+  # - mysql : внешний сервер MySQL/MariaDB (для сетей серверов)
+  type: "mysql"
+
+  # Префикс таблиц для SQL-хранилищ
+  table-prefix: "dp_"
+
+  # H2 (используется при type: h2)
+  h2:
+    # Имя файла БД (без расширения). Будет лежать в plugins/DPrefixes/
+    file: "storage"
+    # Пароль (можно оставить пустым)
+    username: "sa"
+    password: ""
+
+  # MySQL / MariaDB (используется при type: mysql)
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "dp"
+    username: "root"
+    password: "demro"
+    useSSL: false
+    # Параметры пула соединений HikariCP
+    pool-size: 5
+    connection-timeout-ms: 5000
+    # Дополнительные параметры JDBC (необязательно)
+    # Пример: "?serverTimezone=UTC&characterEncoding=utf8"
+    extra-jdbc-params: "?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC"
+
+  # Автоматически переносить данные из playerdata.yml при первом запуске
+  # (после успешного переноса файл будет переименован в playerdata.yml.bak)
+  migrate-from-yaml: true
+
+# === GigaChat LLM ===
+gigachat:
+  enabled: false
+  authorization-key: "YOUR_AUTHORIZATION_KEY_HERE"
+  scope: "GIGACHAT_API_PERS"
+  model: "GigaChat"
+  base-url: "https://api.giga.chat/v1"
+  oauth-url: "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
+  max-tokens: 500
+  temperature: 0.9
+  timeout-seconds: 30
+
+  # Строгий промпт: только чистый текст, без юникода и символов
+  prompt: |
+    Ты — генератор коротких игровых префиксов и суффиксов для Minecraft.
+    Сгенерируй %count% уникальных коротких %type%ов на русском языке (1-2 слова).
+    Ключевые слова для ассоциации: %keywords%.
+
+    СТРОГИЕ ПРАВИЛА (нарушение недопустимо):
+    1. Используй ТОЛЬКО русские буквы, латинские буквы, цифры и обычные пробелы.
+    2. КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО использовать: эмодзи (★, ♛, ✦, ⚔, 🔥, ⭐ и любые другие),
+       математические символы, стрелки, звёздочки, сердечки, галочки, рамки, кавычки,
+       скобки, точки, запятые, восклицательные и вопросительные знаки, дефисы, подчёркивания,
+       двоеточия, тире, многоточия и любые другие символы, кроме букв, цифр и пробелов.
+    3. НЕ используй цветовые коды Minecraft (&a, &b, &#RRGGBB и т.п.) — цвета добавляются автоматически.
+    4. Каждый вариант пиши с новой строки.
+    5. НЕ нумеруй строки. НЕ добавляй дефисы, точки, звёздочки в начало строк.
+    6. НЕ используй кавычки вокруг вариантов.
+    7. Максимум 20 символов на один вариант (считая пробелы).
+    8. НЕ пиши ничего, кроме самих вариантов: ни приветствий, ни пояснений, ни комментариев,
+       ни заголовков, ни markdown-разметки.
+
+    Правильный пример ответа для 5 вариантов:
+    Легенда
+    Топчик
+    Мастер
+    Игрок
+    Герой
+
+  # === Генератор HEX-градиента ===
+  gradient:
+    # Включить автоматическую раскраску сгенерированных префиксов/суффиксов
+    enabled: true
+    # Палитра градиентов. Каждая строка — набор HEX-цветов через запятую.
+    # Для каждого сгенерированного варианта выбирается случайный градиент из палитры.
+    # Чем больше цветов в одной строке, тем плавнее переход.
+    palette:
+      - "#FF6B6B,#FFD93D"
+      - "#00C9FF,#92FE9D"
+      - "#F857A6,#FF5858"
+      - "#A8EDEA,#FED6E3"
+      - "#FFD700,#FF8C00"
+      - "#8E2DE2,#4A00E0"
+      - "#43C6AC,#F8FFAE"
+      - "#FC5C7D,#6A82FB"
+      - "#FDC830,#F37335"
+      - "#00B4DB,#0083B0"
+
+  defaults:
+    group: "default"
+    cost: 0
+    permission: ""
+    duration: "permanent"

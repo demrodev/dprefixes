@@ -1,0 +1,398 @@
+menus:
+  # ============================================================
+  # ГЛАВНОЕ МЕНЮ
+  # ============================================================
+  main:
+    title: "&8» &6Привет, %player_name%!"
+    size: 27
+    type: CHEST
+    items:
+      # Обрамление верхнего и нижнего ряда
+      border:
+        slots: [0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 19, 20, 21, 22, 23, 24, 25, 26]
+        material: BLACK_STAINED_GLASS_PANE
+        name: " "
+        lore: []
+
+      prefix-item:
+        slot: 11
+        material: NAME_TAG
+        name: "&eПрефиксы"
+        lore:
+          - ""
+          - "&7Баланс: &a%vault_eco_balance%"
+          - ""
+          - "&7Нажмите, чтобы открыть."
+          - ""
+        action: "open-menu:prefix"
+        glow: true
+
+      suffix-item:
+        slot: 15
+        material: PAPER
+        name: "&eСуффиксы"
+        lore:
+          - ""
+          - "&7Уровень: &f%player_level%"
+          - ""
+          - "&7Нажмите, чтобы открыть."
+          - ""
+        action: "open-menu:suffix"
+        glow: true
+
+  # ============================================================
+  # МЕНЮ ПРЕФИКСОВ (с категориями)
+  # ============================================================
+  prefix:
+    title: "&8» &6Префиксы &7[%page%/%total%]"
+    categories-title: "&8» &6Выберите категорию"
+    size: 54
+    type: CHEST
+    items-per-page: 45
+    content-slots: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]
+
+    # === Категории (открываются при /prefix) ===
+    categories:
+      all:
+        name: "&eВсе префиксы"
+        material: NETHER_STAR
+        slot: 11
+        lore:
+          - ""
+          - "&7Показать все доступные префиксы"
+          - ""
+      vip:
+        name: "&6VIP"
+        material: DIAMOND
+        slot: 13
+        lore:
+          - ""
+          - "&7Префиксы для VIP"
+          - ""
+      legend:
+        name: "&6Legend"
+        head: "7129"   # ← ID головы из HeadDatabase
+        slot: 15
+        lore:
+          - ""
+          - "&7Префиксы для Legend"
+          - ""
+
+    # === Навигация ===
+    navigation:
+      prev-page:
+        slot: 48
+        material: ARROW
+        name: "&e← Предыдущая"
+        lore: []
+      next-page:
+        slot: 50
+        material: ARROW
+        name: "&eСледующая →"
+        lore: []
+      back:
+        slot: 49
+        material: BARRIER
+        name: "&cНазад"
+        lore:
+          - "&7Вернуться в главное меню"
+        action: "back"
+      remove:
+        slot: 47
+        material: HOPPER
+        name: "&cСнять префикс"
+        lore:
+          - "&7Убрать текущий префикс"
+        action: "remove-prefix"
+
+    # === Предметы ===
+    items:
+      # Обрамление нижнего ряда
+      border:
+        slots: [45, 46, 51, 52, 53]
+        material: GRAY_STAINED_GLASS_PANE
+        name: " "
+        lore: []
+
+      # ---- Категория all ----
+      default:
+        material: STONE
+        category: "all"
+        name: "&7[Игрок]"
+        lore:
+          - ""
+          - "&7Префикс: &f[Игрок]"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - ""
+        prefix: "&7[Игрок] &r"
+        group: "default"
+        cost: 0
+        permission: ""
+        duration: "permanent"
+
+      # ---- Категория vip ----
+      vip:
+        material: DIAMOND
+        category: "vip"
+        name: "&b[VIP]"
+        lore:
+          - ""
+          - "&7Префикс: &r&b[VIP]"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        prefix: "&b[VIP] &r"
+        group: "vip"
+        cost: 1000
+        permission: "dprefixes.prefix.vip"
+        duration: "permanent"
+
+      vip_gold:
+        material: GOLD_INGOT
+        category: "vip"
+        name: "&6[VIP+]"
+        lore:
+          - ""
+          - "&7Префикс: &6[VIP+]"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        prefix: "&6[VIP+] &r"
+        group: "vip"
+        cost: 2500
+        permission: "dprefixes.prefix.vip"
+        duration: "permanent"
+
+      # ---- Категория legend ----
+      legend_week:
+        material: NETHER_STAR
+        category: "legend"
+        name: "&#FFD700[Legend] &7(7 дней)"
+        lore:
+          - ""
+          - "&7Префикс: &#FFD700[Legend]"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        prefix: "&#FFD700[Legend] &r"
+        group: "legend"
+        cost: 500
+        permission: "dprefixes.prefix.legend"
+        duration: "7d"
+
+      legend_month:
+        material: NETHER_STAR
+        category: "legend"
+        name: "&#FFD700[Legend] &7(30 дней)"
+        lore:
+          - ""
+          - "&7Префикс: &#FFD700[Legend]"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        prefix: "&#FFD700[Legend] &r"
+        group: "legend"
+        cost: 1500
+        permission: "dprefixes.prefix.legend"
+        duration: "30d"
+
+      legend_forever:
+        material: GOLD_BLOCK
+        category: "legend"
+        name: "&#FFD700[Legend] &7(навсегда)"
+        lore:
+          - ""
+          - "&7Префикс: &#FFD700[Legend]"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - ""
+        prefix: "&#FFD700[Legend] &r"
+        group: "legend"
+        cost: 5000
+        permission: "dprefixes.prefix.legend"
+        duration: "permanent"
+
+  # ============================================================
+  # МЕНЮ СУФФИКСОВ (с категориями)
+  # ============================================================
+  suffix:
+    title: "&8» &6Суффиксы &7[%page%/%total%]"
+    categories-title: "&8» &6Выберите категорию"
+    size: 54
+    type: CHEST
+    items-per-page: 45
+    content-slots: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44]
+
+    categories:
+      all:
+        name: "&eВсе суффиксы"
+        material: NETHER_STAR
+        slot: 11
+        lore:
+          - ""
+          - "&7Показать все доступные суффиксы"
+          - ""
+      symbols:
+        name: "&bСимволы"
+        material: PAPER
+        slot: 13
+        lore:
+          - ""
+          - "&7Символьные украшения"
+          - ""
+      crowns:
+        name: "&6Короны"
+        head: "5266"   # ← ID головы из HeadDatabase
+        slot: 15
+        lore:
+          - ""
+          - "&7Имперские суффиксы"
+          - ""
+
+    navigation:
+      prev-page:
+        slot: 48
+        material: ARROW
+        name: "&e← Предыдущая"
+        lore: []
+      next-page:
+        slot: 50
+        material: ARROW
+        name: "&eСледующая →"
+        lore: []
+      back:
+        slot: 49
+        material: BARRIER
+        name: "&cНазад"
+        lore:
+          - "&7Вернуться в главное меню"
+        action: "back"
+      remove:
+        slot: 47
+        material: HOPPER
+        name: "&cСнять суффикс"
+        lore:
+          - "&7Убрать текущий суффикс"
+        action: "remove-suffix"
+
+    items:
+      border:
+        slots: [45, 46, 51, 52, 53]
+        material: GRAY_STAINED_GLASS_PANE
+        name: " "
+        lore: []
+
+      # ---- Категория symbols ----
+      star:
+        material: NETHER_STAR
+        category: "symbols"
+        name: "&e★"
+        lore:
+          - ""
+          - "&7Суффикс: &f★"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        suffix: " &e★"
+        group: "default"
+        cost: 500
+        permission: ""
+        duration: "30d"
+
+      sparkle:
+        material: GLOWSTONE_DUST
+        category: "symbols"
+        name: "&b✦"
+        lore:
+          - ""
+          - "&7Суффикс: &b✦"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        suffix: " &b✦"
+        group: "vip"
+        cost: 1000
+        permission: ""
+        duration: "permanent"
+
+      # ---- Категория crowns ----
+      crown:
+        material: GOLDEN_HELMET
+        category: "crowns"
+        name: "&6♛"
+        lore:
+          - ""
+          - "&7Суффикс: &6♛"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        suffix: " &6♛"
+        group: "vip"
+        cost: 1500
+        permission: ""
+        duration: "permanent"
+
+      crown_legend:
+        material: GOLD_BLOCK
+        category: "crowns"
+        name: "&#FFD700♔"
+        lore:
+          - ""
+          - "&7Суффикс: &#FFD700♔"
+          - "%group_line%"
+          - "%cost_line%"
+          - "%permission_line%"
+          - "%duration_line%"
+          - ""
+          - "%status%"
+          - "&7Осталось: &f%time_left%"
+          - ""
+        suffix: " &#FFD700♔"
+        group: "legend"
+        cost: 3000
+        permission: ""
+        duration: "permanent"

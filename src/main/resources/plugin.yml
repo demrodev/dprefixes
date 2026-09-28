@@ -1,0 +1,36 @@
+name: dPrefixes
+version: '1.0-RELEASE'
+main: me.demro.dprefixes.DPrefixes
+api-version: '1.21'
+authors: [DemRoDev]
+description: "Уникальные префиксы и суффиксы с кастомизируемым меню, GigaChat и БД."
+website: "https://demro.space/"
+
+libraries:
+  - 'com.zaxxer:HikariCP:5.1.0'
+  - 'com.h2database:h2:2.2.224'
+  - 'com.mysql:mysql-connector-j:8.4.0'
+  - 'org.slf4j:slf4j-api:2.0.13'
+
+commands:
+  dp:
+    description: Главная команда плагина
+    usage: /dp help
+  prefix:
+    description: Открыть меню префиксов
+  suffix:
+    description: Открыть меню суффиксов
+
+depend: [Vault, LuckPerms]
+softdepend: [PlaceholderAPI, HeadDatabase]
+
+permissions:
+  dprefixes.admin:
+    description: Доступ к административным командам
+    default: op
+  dprefixes.use:
+    description: Доступ к меню
+    default: true
+  dprefixes.bypass.group:
+    description: Игнорировать проверку группы
+    default: op

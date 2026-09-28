@@ -1,0 +1,119 @@
+prefix: "&8[&6DPrefixes&8] &r"
+
+general:
+  no-permission: "%prefix%&cУ вас нет прав на это действие."
+  player-only: "%prefix%&cЭта команда только для игроков."
+  unknown-command: "%prefix%&cНеизвестная подкоманда. Используйте &e/dp help"
+  reloaded: "%prefix%&aКонфигурация успешно перезагружена."
+  invalid-args: "%prefix%&cНеверные аргументы команды."
+
+menu:
+  unavailable: "%prefix%&cВы не соответствуете условиям для этого предмета."
+  prefix-set: "%prefix%&aВы установили префикс: &r%prefix_value%"
+  suffix-set: "%prefix%&aВы установили суффикс: &r%suffix_value%"
+  prefix-removed: "%prefix%&aПрефикс снят. Установлен стандартный префикс вашей группы."
+  suffix-removed: "%prefix%&aСуффикс снят. Установлен стандартный суффикс вашей группы."
+  prefix-expired: "%prefix%&eСрок префикса истёк. Установлен стандартный префикс вашей группы."
+  suffix-expired: "%prefix%&eСрок суффикса истёк. Установлен стандартный суффикс вашей группы."
+  insufficient-funds: "%prefix%&cНедостаточно средств. Требуется: &f%cost%"
+  payment-success: "%prefix%&aСписано: &f%cost%"
+  purchased-permanent: "%prefix%&aПредмет куплен навсегда!"
+  purchased-temporary: "%prefix%&aПредмет куплен до &f%expire%&a."
+
+  # === Статусы активного предмета (надет прямо сейчас) ===
+  status-active-permanent: "&a✓ Активен (навсегда)"
+  status-active-temporary: "&a✓ Активен до &f%expire%"
+
+  # === Статусы купленного, но не надетого предмета ===
+  status-permanent: "&a✓ Куплено навсегда"
+  status-temporary: "&a✓ Куплено до &f%expire%"
+
+  # === Прочие статусы ===
+  status-expired: "&c✗ Срок истёк"
+  status-not-owned: "&7✗ Не куплено"
+  luckperms-missing: "%prefix%&cLuckPerms недоступен — невозможно установить префикс/суффикс."
+
+  # === Строки условий в lore ===
+  # Каждая строка автоматически скрывается, если условие не задано:
+  #   - cost-free используется, если стоимость = 0;
+  #   - group полностью пропускается, если группа default или пуста;
+  #   - permission полностью пропускается, если права нет.
+  lines:
+    cost: "&7Стоимость: &f%cost%"
+    cost-free: "&7Стоимость: &aБесплатно"
+    group: "&7Группа: &f%group%"
+    permission: "&7Право: &f%permission%"
+    duration: "&7Срок: &f%duration%"
+
+requirements:
+  group: "&c- Требуется группа: &f%group%"
+  cost: "&c- Требуется средств: &f%cost%"
+  permission: "&c- Требуется право: &f%permission%"
+  placeholder: "&c- Требуется &f%placeholder% %operator% %value%"
+  header: "&cНе выполнены условия:"
+
+ai:
+  disabled: "%prefix%&cИнтеграция с GigaChat отключена в конфиге."
+  no-key: "%prefix%&cНе задан ключ авторизации GigaChat в config.yml."
+  thinking: "%prefix%&7Запрос к GigaChat, подождите..."
+  error: "%prefix%&cОшибка GigaChat: &f%error%"
+  pattern-created: "%prefix%&aПаттерн &f%name% &aсоздан. Слова: &f%keywords%"
+  pattern-exists: "%prefix%&cПаттерн с таким именем уже существует."
+  pattern-not-found: "%prefix%&cПаттерн &f%name% &cне найден."
+  pattern-removed: "%prefix%&aПаттерн &f%name% &aудалён."
+  pattern-usage: "%prefix%&cИспользование: &e/dp ai pattern <имя> \"слово1, слово2, ...\""
+  generate-usage: "%prefix%&cИспользование: &e/dp ai generate <prefix|suffix> <паттерн> [количество]"
+  generate-invalid-type: "%prefix%&cТип должен быть prefix или suffix."
+  generate-start: "%prefix%&eГенерация %count% %type%ов по паттерну &f%name%&e..."
+  generate-empty: "%prefix%&cGigaChat вернул пустой результат."
+  generate-success: "%prefix%&aСгенерировано и добавлено &f%count% &a%type%ов."
+  generate-list-header: "%prefix%&eСгенерированные варианты:"
+  generate-list-entry: "&7- &r%value%"
+  list-header: "%prefix%&eПаттерны &7(&f%count%&7):"
+  list-entry: "&7- &f%name% &7→ &r%keywords%"
+  list-empty: "%prefix%&cПаттернов нет."
+
+update:
+  available: "%prefix%&eДоступно обновление плагина: &f%current% &e→ &a%latest%&e. &7Скачать: %url%"
+  latest: "%prefix%&aВы используете последнюю версию плагина (&f%current%&a)."
+
+commands:
+  list-header: "%prefix%&eСписок %type% &7(&f%count%&7):"
+  list-entry: "&7- &f%name% &7→ %value% &7[группа: &f%group%&7, стоимость: &f%cost%&7, срок: &f%duration%&7]"
+  list-empty: "%prefix%&cСписок пуст."
+  add-success: "%prefix%&aУспешно добавлен %type%: &f%value%&a."
+  add-usage: "%prefix%&cИспользование: &e/dp add <prefix|suffix> \"ваш текст\" [group:xxx,cost:xxx,permission:xxx,duration:permanent|7d]"
+  add-invalid-type: "%prefix%&cТип должен быть prefix или suffix."
+  add-empty-text: "%prefix%&cТекст не может быть пустым."
+  player-not-found: "%prefix%&cИгрок &f%player% &cне найден в сети."
+  padd-usage: "%prefix%&cИспользование: &e/dp padd <ник> <id>"
+  padd-success: "%prefix%&aИгроку &f%player% &aвыдан %type% &f%id%&a: &r%value%"
+  padd-received: "%prefix%&aВам выдан %type%: &r%value%"
+  padd-invalid-id: "%prefix%&cПредмет с id &f%id% &cне найден в меню."
+  pdel-usage: "%prefix%&cИспользование: &e/dp pdel <ник> <id|*|all>"
+  pdel-success: "%prefix%&aУ игрока &f%player% &aзабран %type% &f%id%&a."
+  pdel-all-success: "%prefix%&aУ игрока &f%player% &aзабраны все префиксы и суффиксы."
+  pdel-not-owned: "%prefix%&cУ игрока &f%player% &cнет предмета &f%id%&c."
+  pdel-invalid-id: "%prefix%&cПредмет с id &f%id% &cне найден в меню."
+  pdel-received: "%prefix%&eУ вас забран %type%."
+  pdel-received-all: "%prefix%&eУ вас забраны все префиксы и суффиксы."
+
+  help:
+    - "&8&m--------------------------------"
+    - "&6DPrefixes &7- &fпомощь по командам"
+    - "&e/dp &7- открыть главное меню"
+    - "&e/dp help &7- показать эту справку"
+    - "&e/prefix &7- меню префиксов"
+    - "&e/suffix &7- меню суффиксов"
+    - "&e/dp reload &7- перезагрузить конфиг"
+    - "&e/dp list prefixes &7- список префиксов"
+    - "&e/dp list suffixes &7- список суффиксов"
+    - "&e/dp add prefix \"ваш текст\" [group:xxx,cost:xxx,permission:none,duration:7d]"
+    - "&e/dp add suffix \"ваш текст\" [group:xxx,cost:xxx,permission:none,duration:permanent]"
+    - "&e/dp ai pattern <имя> \"слова\" &7- создать паттерн"
+    - "&e/dp ai generate <prefix|suffix> <паттерн> [кол-во] &7- генерация через GigaChat"
+    - "&e/dp ai list &7- список паттернов"
+    - "&e/dp ai remove <имя> &7- удалить паттерн"
+    - "&e/dp padd <ник> <id> &7- выдать префикс/суффикс в обход условий"
+    - "&e/dp pdel <ник> <id|*|all> &7- забрать префикс/суффикс у игрока"
+    - "&8&m--------------------------------"
