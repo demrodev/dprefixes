@@ -18,10 +18,6 @@
         <mysql.version>8.4.0</mysql.version>
         <hikari.version>5.1.0</hikari.version>
         <slf4j.version>2.0.13</slf4j.version>
-        <junit.version>5.11.3</junit.version>
-        <assertj.version>3.26.3</assertj.version>
-        <mockito.version>5.14.2</mockito.version>
-        <mockbukkit.version>3.109.0</mockbukkit.version>
     </properties>
 
     <repositories>
@@ -54,6 +50,7 @@
             </snapshots>
         </repository>
     </repositories>
+
     <dependencies>
         <dependency>
             <groupId>me.demro</groupId>
@@ -143,17 +140,6 @@
     <build>
         <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
-                <configuration>
-                    <argLine>-Dfile.encoding=UTF-8</argLine>
-                    <environmentVariables>
-                        <JAVA_TOOL_OPTIONS>-Dfile.encoding=UTF-8</JAVA_TOOL_OPTIONS>
-                    </environmentVariables>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
